@@ -18,7 +18,7 @@ public class main {
 
 		Player player = g.getPlayer();
 
-		System.out.println(player.getMoney() + "$");
+		System.out.println("Pre purchase: " + player.getMoney() + "$");
 
 		player.purchaseItem(house);
 
@@ -27,7 +27,7 @@ public class main {
 			System.out.println(item.getValue() + "$");
 			System.out.println(item.getOwner());
 			System.out.println(item.getOwner().getName());
-			System.out.println(item.getOwner().getMoney() + "$");
+			System.out.println("Post purchase: " + item.getOwner().getMoney() + "$");
 		}
 
 		Die die = g.getDie();
