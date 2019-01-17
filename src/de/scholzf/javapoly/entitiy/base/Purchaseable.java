@@ -1,5 +1,7 @@
 package de.scholzf.javapoly.entitiy.base;
 
+import de.scholzf.javapoly.entitiy.GameObjects.Entities.Entity;
+
 public interface Purchaseable {
 
 	boolean isPurchased();

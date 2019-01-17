@@ -5,6 +5,6 @@ public enum EntityFigure {
 	PLANE,
 	FOOTBALL,
 	SHOE,
-	DICE;
-	
+	DICE
+
 }

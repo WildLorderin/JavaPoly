@@ -1,16 +1,18 @@
 package de.scholzf.javapoly.entitiy.base;
 
+import de.scholzf.javapoly.entitiy.GameObjects.Entities.Entity;
+
 public interface BuildingBase {
 	
-	public String getName();
-	public void setName(String name);
+	String getName();
+	void setName(String name);
 	
-	public double getValue();
-	public void setValue(double value);
+	double getValue();
+	void setValue(double value);
 
-	public EntityType getType();
-	public void setType(EntityType type);
+	GameObjectType getType();
+	void setType(GameObjectType type);
 	
-	public Entity getOwner();
-	public void setOwner(Entity owner);
+	Entity getOwner();
+	void setOwner(Entity owner);
 }
