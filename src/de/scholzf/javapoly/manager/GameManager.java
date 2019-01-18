@@ -1,12 +1,14 @@
 package de.scholzf.javapoly.manager;
 
 import de.scholzf.javapoly.entitiy.GameObjects.Entities.Player;
+import de.scholzf.javapoly.entitiy.GameObjects.GameObject;
 import de.scholzf.javapoly.entitiy.GameObjects.Tiles.Jail;
 import de.scholzf.javapoly.entitiy.GameObjects.Tiles.Tile;
 import de.scholzf.javapoly.entitiy.GameObjects.Utils.Die;
 import de.scholzf.javapoly.entitiy.base.GameObjectType;
 
-import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameManager {
 
@@ -19,20 +21,6 @@ public class GameManager {
         die.rollDie();
         first = die.getFirst();
         second = die.getSecond();
-
-        /*
-        for(int i = 0; i < 50; i++){
-           player.move(player.getRotation());
-            System.out.println(i);
-           try {
-               TimeUnit.SECONDS.sleep(1);
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           }
-        }
-    */
-        //System.out.println("First: " + first + "\nSecond: " + second);
-
     }
 
     public void create() {
@@ -67,6 +55,10 @@ public class GameManager {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public int getKey() {
+        return GameObject.Canvas.getInstance().getNextKey();
     }
 
     public Die getDie() {
