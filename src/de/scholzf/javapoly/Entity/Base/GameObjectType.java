@@ -1,4 +1,4 @@
-package de.scholzf.javapoly.Entity.base;
+package de.scholzf.javapoly.Entity.Base;
 
 public enum GameObjectType {
 

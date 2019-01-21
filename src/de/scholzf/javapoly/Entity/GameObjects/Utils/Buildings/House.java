@@ -1,8 +1,8 @@
 package de.scholzf.javapoly.Entity.GameObjects.Utils.Buildings;
 
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
-import de.scholzf.javapoly.Entity.base.GameObjectType;
-import de.scholzf.javapoly.Entity.base.Purchaseable;
+import de.scholzf.javapoly.Entity.Base.GameObjectType;
+import de.scholzf.javapoly.Entity.Base.Purchaseable;
 
 public class House extends Building implements Purchaseable {
 

@@ -5,8 +5,8 @@ import de.scholzf.javapoly.Entity.GameObjects.GameObject;
 import de.scholzf.javapoly.Entity.GameObjects.Tiles.Jail;
 import de.scholzf.javapoly.Entity.GameObjects.Tiles.Tile;
 import de.scholzf.javapoly.Entity.GameObjects.Utils.Die;
-import de.scholzf.javapoly.Entity.base.EntityFigure;
-import de.scholzf.javapoly.Entity.base.GameObjectType;
+import de.scholzf.javapoly.Entity.Base.EntityFigure;
+import de.scholzf.javapoly.Entity.Base.GameObjectType;
 
 public class GameManager {
 

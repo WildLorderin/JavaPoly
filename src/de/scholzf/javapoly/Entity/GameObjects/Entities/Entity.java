@@ -2,10 +2,10 @@ package de.scholzf.javapoly.Entity.GameObjects.Entities;
 
 import de.scholzf.javapoly.Entity.GameObjects.GameObject;
 import de.scholzf.javapoly.Entity.GameObjects.Tiles.Jail;
-import de.scholzf.javapoly.Entity.base.EntityBase;
-import de.scholzf.javapoly.Entity.base.EntityFigure;
-import de.scholzf.javapoly.Entity.base.GameObjectType;
-import de.scholzf.javapoly.Entity.base.Purchaseable;
+import de.scholzf.javapoly.Entity.Base.EntityBase;
+import de.scholzf.javapoly.Entity.Base.EntityFigure;
+import de.scholzf.javapoly.Entity.Base.GameObjectType;
+import de.scholzf.javapoly.Entity.Base.Purchaseable;
 import de.scholzf.javapoly.Exceptions.PurchaseException;
 
 import java.util.ArrayList;

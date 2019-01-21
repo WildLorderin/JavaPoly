@@ -1,8 +1,8 @@
 package de.scholzf.javapoly.Entity.GameObjects.Utils.Buildings;
 
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
-import de.scholzf.javapoly.Entity.base.BuildingBase;
-import de.scholzf.javapoly.Entity.base.GameObjectType;
+import de.scholzf.javapoly.Entity.Base.BuildingBase;
+import de.scholzf.javapoly.Entity.Base.GameObjectType;
 
 public class Building implements BuildingBase {
 
