@@ -1,5 +1,6 @@
 package de.scholzf.javapoly.Manager;
 
+import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Player;
 import de.scholzf.javapoly.Entity.GameObjects.GameObject;
 import de.scholzf.javapoly.Entity.GameObjects.Tiles.Jail;
@@ -8,11 +9,14 @@ import de.scholzf.javapoly.Entity.GameObjects.Utils.Die;
 import de.scholzf.javapoly.Entity.Base.EntityFigure;
 import de.scholzf.javapoly.Entity.Base.GameObjectType;
 
+import java.util.List;
+
 public class GameManager {
 
     private static int first, second;
-    private static Player player;
+    private static Player localPlayer;
     private static Die die;
+    private static List<Entity> players;
 
     public void rollDie() {
         die = new Die();
@@ -48,11 +52,15 @@ public class GameManager {
 
         Jail jail = new Jail();
 
-        player = new Player("flo", 5, 0, 1, "player", 1500, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
+        localPlayer = new Player("flo", 5, 0, 1, "player", 1500, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
     }
 
-    public Player getPlayer() {
-        return player;
+    public Player getLocalPlayer() {
+        return localPlayer;
+    }
+
+    public List<Entity> getPlayers() {
+        return players;
     }
 
     public int getKey() {
@@ -61,21 +69,6 @@ public class GameManager {
 
     public Die getDie() {
         return die;
-    }
-
-    public int checkPosition() {
-        if(player.getX() == 5 && player.getY() == 5) {
-            player.setRotation(2);
-            return 2;
-        } else if(player.getX() == 0 && player.getY() == 5) {
-            player.setRotation(3);
-            return 3;
-        } else if(player.getX() == 0 && player.getY() == 0) {
-            player.setRotation(0);
-           return 0;
-        } else {
-            return player.getRotation();
-        }
     }
 
 }

@@ -4,6 +4,10 @@ import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
 
 public class ConsoleManager {
 
+    public void printf(String format, Object ... args) {
+        System.out.printf(format, args);
+    }
+
     public void stats(Entity entity) {
 
         System.out.println("Das sind deine Stats:");
