@@ -6,6 +6,7 @@ import de.scholzf.javapoly.Entity.GameObjects.Utils.Buildings.House;
 import de.scholzf.javapoly.Manager.ConsoleManager;
 import de.scholzf.javapoly.Manager.GameManager;
 
+import java.awt.event.KeyEvent;
 
 public class main {
 
@@ -23,7 +24,13 @@ public class main {
 		player.purchaseItem(house);
 		player.purchaseItem(house2);
 
-		c.stats(player);
+		while(true) {
+			int key = g.getKey();
+
+			if(key == KeyEvent.VK_S) {
+				c.stats(player);
+			}
+		}
 
 	}
 
