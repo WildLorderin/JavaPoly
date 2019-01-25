@@ -1,10 +1,19 @@
 package de.scholzf.javapoly.Entity.GameObjects.Entities;
 
-import de.scholzf.javapoly.Entity.GameObjects.Tiles.Jail;
 import de.scholzf.javapoly.Entity.Base.EntityFigure;
 import de.scholzf.javapoly.Entity.Base.GameObjectType;
+import de.scholzf.javapoly.Entity.GameObjects.Tiles.Jail;
+import de.scholzf.javapoly.Entity.GameObjects.Utils.Buildings.House;
+import de.scholzf.javapoly.Manager.CommunityCard;
+import de.scholzf.javapoly.Manager.CommunityCardManager;
+import de.scholzf.javapoly.Manager.GameManager;
+import de.scholzf.javapoly.Test.main;
 
 public class Player extends Entity {
+
+	private GameManager gameManager = main.getGameManager();
+	private CommunityCardManager communityCardManager = main.getCommunityCardManager();
+	public int stepsLeft;
 
 	public Player(String name, double money, EntityFigure figure, Jail jail) {
 		super(name, GameObjectType.PLAYER, figure, money, jail);
@@ -15,8 +24,9 @@ public class Player extends Entity {
 		super(name, x, y, rotation, fileName, money, type, figure, jail);
 	}
 
-	public void move(int i) {
-		switch (i) {
+	public void move(int stepsLeft) {
+		checkRotation(stepsLeft);
+		switch (this.getRotation()) {
 			case 1:
 				moveDown();
 				break;
@@ -26,9 +36,55 @@ public class Player extends Entity {
 			case 3:
 				moveUp();
 				break;
-			case 4:
+			case 0:
 				moveRight();
 				break;
+		}
+
+		if(stepsLeft == 0)
+			checkCurrentField();
+	}
+
+	public void checkCurrentField() {
+		//Community card action
+		if((this.getX() == 2 && this.getY() == 0) || (this.getX() == 0 && this.getY() == 4) || (this.getX() == 6 && this.getY() == 3) || (this.getX() == 3 && this.getY() == 6)) {
+			CommunityCard card = communityCardManager.getCard();
+			card.print();
+			performAction(card.getId());
+		}else if(this.getX() == 6 && this.getY() == 0) {
+			//Über Los
+			gameManager.onGoSpace(this);
+		} else if(this.getX() == 6 && this.getY() == 1) {
+			//Erstes blaues Kärtchen
+
+			
+
+		}
+
+	}
+
+	public void performAction(int id) {
+		switch (id) {
+			case 0:
+				setMoney(getMoney() - 250);
+				break;
+			case 1:
+				setMoney(getMoney() - 349);
+				break;
+			default:
+				break;
+		}
+	}
+
+	public void checkRotation(int stepsLeft) {
+		if(this.getX() == 6 && this.getY() == 6) {
+			setRotation(2);
+		} else if(this.getX() == 0 && this.getY() == 6) {
+			setRotation(3);
+		} else if(this.getX() == 0 && this.getY() == 0) {
+			setRotation(0);
+		} else if(this.getX() == 6 && this.getY() == 0) {
+			setRotation(1);
 		}
 	}
 
@@ -46,7 +102,7 @@ public class Player extends Entity {
 
 	@Override
 	public void moveRight() {
-		this.setRotation(4);
+		this.setRotation(0);
 		this.setLocation(this.getX() + 1, this.getY());
 	}
 

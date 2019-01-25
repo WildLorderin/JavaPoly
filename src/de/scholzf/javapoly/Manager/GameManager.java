@@ -1,14 +1,15 @@
 package de.scholzf.javapoly.Manager;
 
+import de.scholzf.javapoly.Entity.Base.EntityFigure;
+import de.scholzf.javapoly.Entity.Base.GameObjectType;
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Player;
 import de.scholzf.javapoly.Entity.GameObjects.GameObject;
 import de.scholzf.javapoly.Entity.GameObjects.Tiles.Jail;
 import de.scholzf.javapoly.Entity.GameObjects.Tiles.Tile;
 import de.scholzf.javapoly.Entity.GameObjects.Utils.Die;
-import de.scholzf.javapoly.Entity.Base.EntityFigure;
-import de.scholzf.javapoly.Entity.Base.GameObjectType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameManager {
@@ -16,7 +17,9 @@ public class GameManager {
     private static int first, second;
     private static Player localPlayer;
     private static Die die;
-    private static List<Entity> players;
+    private static List<Entity> players = new ArrayList<>();
+    private static boolean firstRound = true;
+    public int stepsLeft = 0;
 
     public void rollDie() {
         die = new Die();
@@ -25,34 +28,68 @@ public class GameManager {
         second = die.getSecond();
     }
 
+    public void add(Entity entity) {
+        players.add(entity);
+    }
+
+    public void next() {
+        rollDie();
+
+        int sum = first + second;
+        stepsLeft = sum;
+
+        for(int i = 0; i < sum; i++) {
+            try {
+                Thread.sleep(250);
+                stepsLeft--;
+                localPlayer.move(stepsLeft);
+                localPlayer.stepsLeft = stepsLeft;
+                System.out.println("Steps left: " + stepsLeft);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        firstRound = false;
+
+    }
+
+    public int getSum() {
+        return first + second;
+    }
+
     public void create() {
-        new Tile(0, 0, "floor");
-        new Tile(1, 0, "floor");
-        new Tile(2, 0, "floor");
-        new Tile(3, 0, "floor");
-        new Tile(4, 0, "floor");
-        new Tile(5, 0, "floor");
+        new Tile(1, 0, "yellow");
+        new Tile(2, 0, "community_field");
+        new Tile(3, 0, "lapis");
+        new Tile(4, 0, "lapis");
+        new Tile(5, 0, "lapis");
+        new Tile(6, 0, "start");
 
-        new Tile(0, 1, "floor");
-        new Tile(0, 2, "floor");
-        new Tile(0, 3, "floor");
-        new Tile(0, 4, "floor");
-        new Tile(0, 5, "floor");
+        new Tile(0, 1, "yellow");
+        new Tile(0, 2, "diamond");
+        new Tile(0, 3, "diamond");
+        new Tile(0, 4, "community_field");
+        new Tile(0, 5, "orange");
+        new Tile(0, 6, "emerald");
 
-        new Tile(1, 5, "floor");
-        new Tile(2, 5, "floor");
-        new Tile(3, 5, "floor");
-        new Tile(4, 5, "floor");
-        new Tile(5, 5, "floor");
+        new Tile(1, 6, "orange");
+        new Tile(2, 6, "orange");
+        new Tile(3, 6, "community_field");
+        new Tile(4, 6, "lime");
+        new Tile(5, 6, "lime");
+        new Tile(6, 5, "magenta");
+        new Tile(6, 6, "jail");
 
-        new Tile(5, 1, "floor");
-        new Tile(5, 2, "floor");
-        new Tile(5, 3, "floor");
-        new Tile(5, 4, "floor");
+        new Tile(6, 1, "lightblue");
+        new Tile(6, 2, "lightblue");
+        new Tile(6, 3, "community_field");
+        new Tile(6, 4, "magenta");
 
         Jail jail = new Jail();
 
-        localPlayer = new Player("flo", 5, 0, 1, "player", 1500, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
+        localPlayer = new Player("flo", 6, 0, 1, "player", 1500, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
+        add(localPlayer);
     }
 
     public Player getLocalPlayer() {
@@ -69,6 +106,13 @@ public class GameManager {
 
     public Die getDie() {
         return die;
+    }
+
+    //200$ wenn über Los
+    public void onGoSpace(Entity entity) {
+
+        if(!firstRound)
+            entity.setMoney(entity.getMoney() + 200);
     }
 
 }

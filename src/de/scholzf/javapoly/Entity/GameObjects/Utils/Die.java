@@ -18,9 +18,13 @@ public class Die {
         return this.second;
     }
 
+    public int getSum() {
+        return getFirst() + getSecond();
+    }
+
     public void rollDie() {
-        first = ThreadLocalRandom.current().nextInt(1, 7);
-        second = ThreadLocalRandom.current().nextInt(1, 7);
+        first = ThreadLocalRandom.current().nextInt(1, 3);
+        second = ThreadLocalRandom.current().nextInt(1, 3);
     }
 
 }

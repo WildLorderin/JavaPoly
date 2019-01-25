@@ -18,8 +18,8 @@ public class CommunityCardManager {
     }
 
     public void create() {
-        cards.add(new CommunityCard("BAföG Rückzahlung", "Du musst leider einen Teil Deines BAföG zurückzahlen. Zahle 250€"));
-        cards.add(new CommunityCard("Semesterbeitrag steht an! ", "Zahle 349€"));
+        cards.add(new CommunityCard("BAföG Rückzahlung", "Du musst leider einen Teil Deines BAföG zurückzahlen. Zahle 250€", 0));
+        cards.add(new CommunityCard("Semesterbeitrag steht an! ", "Zahle 349€", 1));
     }
 
     public CommunityCard getCard() {

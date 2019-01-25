@@ -1,16 +1,15 @@
 package de.scholzf.javapoly.Manager;
 
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
 public class CommunityCard {
 
     private String name;
     private String action;
+    private int id;
 
-    public CommunityCard(String name, String action) {
+    public CommunityCard(String name, String action, int id) {
         this.name = name;
         this.action = action;
+        this.id = id;
     }
 
     public String getName() {
@@ -25,13 +24,19 @@ public class CommunityCard {
         return action;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setAction(String action) {
         this.action = action;
     }
 
     public void print() {
-        System.out.println("Name: " + name);
-        System.out.println("Action: " + action);
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("0   Name: " + name);
+        System.out.println("0   Action: " + action);
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxx");
     }
 
 }
