@@ -7,6 +7,7 @@ import de.scholzf.javapoly.Entity.GameObjects.Utils.Buildings.House;
 import de.scholzf.javapoly.Manager.CommunityCard;
 import de.scholzf.javapoly.Manager.CommunityCardManager;
 import de.scholzf.javapoly.Manager.GameManager;
+import de.scholzf.javapoly.Manager.HouseManager;
 import de.scholzf.javapoly.Test.main;
 
 public class Player extends Entity {
@@ -14,6 +15,7 @@ public class Player extends Entity {
 	private GameManager gameManager = main.getGameManager();
 	private CommunityCardManager communityCardManager = main.getCommunityCardManager();
 	public int stepsLeft;
+	private int fieldId;
 
 	public Player(String name, double money, EntityFigure figure, Jail jail) {
 		super(name, GameObjectType.PLAYER, figure, money, jail);
@@ -45,7 +47,70 @@ public class Player extends Entity {
 			checkCurrentField();
 	}
 
+	public void setFieldId(int id) {
+		this.fieldId = id;
+	}
+
+	public int getFieldId() {
+		return this.fieldId;
+	}
+
+	public void setIds() {
+		if(this.getX() == 6 && this.getY() == 0) {
+			setFieldId(0);
+		} else if(this.getX() == 6 && this.getY() == 1) {
+			setFieldId(1);
+		} else if(this.getX() == 6 && this.getY() == 2) {
+			setFieldId(2);
+		} else if(this.getX() == 6 && this.getY() == 3) {
+			setFieldId(3);
+		} else if(this.getX() == 6 && this.getY() == 4) {
+			setFieldId(4);
+		} else if(this.getX() == 6 && this.getY() == 5) {
+			setFieldId(5);
+		} else if(this.getX() == 6 && this.getY() == 6) {
+			setFieldId(6);
+		} else if(this.getX() == 5 && this.getY() == 6) {
+			setFieldId(7);
+		} else if(this.getX() == 4 && this.getY() == 6) {
+			setFieldId(8);
+		} else if(this.getX() == 3 && this.getY() == 6) {
+			setFieldId(9);
+		} else if(this.getX() == 2 && this.getY() == 6) {
+			setFieldId(10);
+		} else if(this.getX() == 1 && this.getY() == 6) {
+			setFieldId(11);
+		} else if(this.getX() == 0 && this.getY() == 6) {
+			setFieldId(12);
+		} else if(this.getX() == 0 && this.getY() == 5) {
+			setFieldId(13);
+		} else if(this.getX() == 0 && this.getY() == 4) {
+			setFieldId(14);
+		} else if(this.getX() == 0 && this.getY() == 3) {
+			setFieldId(15);
+		} else if(this.getX() == 0 && this.getY() == 2) {
+			setFieldId(16);
+		} else if(this.getX() == 0 && this.getY() == 1) {
+			setFieldId(17);
+		} else if(this.getX() == 0 && this.getY() == 0) {
+			setFieldId(18);
+		} else if(this.getX() == 1 && this.getY() == 0) {
+			setFieldId(19);
+		} else if(this.getX() == 2 && this.getY() == 0) {
+			setFieldId(20);
+		} else if(this.getX() == 3 && this.getY() == 0) {
+			setFieldId(21);
+		} else if(this.getX() == 4 && this.getY() == 0) {
+			setFieldId(22);
+		} else if(this.getX() == 5 && this.getY() == 0) {
+			setFieldId(23);
+		}
+	}
+
 	public void checkCurrentField() {
+
+		System.out.println(this.getFieldId());
+
 		//Community card action
 		if((this.getX() == 2 && this.getY() == 0) || (this.getX() == 0 && this.getY() == 4) || (this.getX() == 6 && this.getY() == 3) || (this.getX() == 3 && this.getY() == 6)) {
 			CommunityCard card = communityCardManager.getCard();
@@ -54,11 +119,6 @@ public class Player extends Entity {
 		}else if(this.getX() == 6 && this.getY() == 0) {
 			//Über Los
 			gameManager.onGoSpace(this);
-		} else if(this.getX() == 6 && this.getY() == 1) {
-			//Erstes blaues Kärtchen
-
-			
-
 		}
 
 	}

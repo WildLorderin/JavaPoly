@@ -35,16 +35,18 @@ public class GameManager {
     public void next() {
         rollDie();
 
-        int sum = first + second;
+        int sum = 1;
+        //int sum = first + second;
         stepsLeft = sum;
 
         for(int i = 0; i < sum; i++) {
             try {
                 Thread.sleep(250);
+                System.out.println("FieldID : " + localPlayer.getFieldId());
                 stepsLeft--;
+                localPlayer.setIds();
                 localPlayer.move(stepsLeft);
                 localPlayer.stepsLeft = stepsLeft;
-                System.out.println("Steps left: " + stepsLeft);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
