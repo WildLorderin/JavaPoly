@@ -3,17 +3,15 @@ package de.scholzf.javapoly.Entity.GameObjects.Entities;
 import de.scholzf.javapoly.Entity.Base.EntityFigure;
 import de.scholzf.javapoly.Entity.Base.GameObjectType;
 import de.scholzf.javapoly.Entity.GameObjects.Tiles.Jail;
-import de.scholzf.javapoly.Entity.GameObjects.Utils.Buildings.House;
 import de.scholzf.javapoly.Manager.CommunityCard;
 import de.scholzf.javapoly.Manager.CommunityCardManager;
 import de.scholzf.javapoly.Manager.GameManager;
-import de.scholzf.javapoly.Manager.HouseManager;
-import de.scholzf.javapoly.Test.main;
+import de.scholzf.javapoly.Test.MainGame;
 
 public class Player extends Entity {
 
-	private GameManager gameManager = main.getGameManager();
-	private CommunityCardManager communityCardManager = main.getCommunityCardManager();
+	private GameManager gameManager = MainGame.getGameManager();
+	private CommunityCardManager communityCardManager = MainGame.getCommunityCardManager();
 	public int stepsLeft;
 	private int fieldId;
 
@@ -26,25 +24,27 @@ public class Player extends Entity {
 		super(name, x, y, rotation, fileName, money, type, figure, jail);
 	}
 
-	public void move(int stepsLeft) {
-		checkRotation(stepsLeft);
+	public void move() {
+		setIds();
+		checkRotation();
 		switch (this.getRotation()) {
 			case 1:
 				moveDown();
+				setIds();
 				break;
 			case 2:
 				moveLeft();
+				setIds();
 				break;
 			case 3:
 				moveUp();
+				setIds();
 				break;
 			case 0:
 				moveRight();
+				setIds();
 				break;
 		}
-
-		if(stepsLeft == 0)
-			checkCurrentField();
 	}
 
 	public void setFieldId(int id) {
@@ -108,17 +108,18 @@ public class Player extends Entity {
 	}
 
 	public void checkCurrentField() {
-
-		System.out.println(this.getFieldId());
-
 		//Community card action
 		if((this.getX() == 2 && this.getY() == 0) || (this.getX() == 0 && this.getY() == 4) || (this.getX() == 6 && this.getY() == 3) || (this.getX() == 3 && this.getY() == 6)) {
 			CommunityCard card = communityCardManager.getCard();
 			card.print();
 			performAction(card.getId());
-		}else if(this.getX() == 6 && this.getY() == 0) {
+		} else if(this.getX() == 6 && this.getY() == 0) {
 			//Über Los
 			gameManager.onGoSpace(this);
+		} else if(this.getX() == 0 && this.getY() == 0 && this.stepsLeft == 0) {
+			System.out.println(stepsLeft);
+			this.setImprisioned(true);
+			this.setLocation(6, 6);
 		}
 
 	}
@@ -136,7 +137,7 @@ public class Player extends Entity {
 		}
 	}
 
-	public void checkRotation(int stepsLeft) {
+	public void checkRotation() {
 		if(this.getX() == 6 && this.getY() == 6) {
 			setRotation(2);
 		} else if(this.getX() == 0 && this.getY() == 6) {

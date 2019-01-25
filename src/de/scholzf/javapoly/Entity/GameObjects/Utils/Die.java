@@ -23,8 +23,8 @@ public class Die {
     }
 
     public void rollDie() {
-        first = ThreadLocalRandom.current().nextInt(1, 3);
-        second = ThreadLocalRandom.current().nextInt(1, 3);
+        first = ThreadLocalRandom.current().nextInt(1, 6);
+        second = ThreadLocalRandom.current().nextInt(1, 6);
     }
 
 }

@@ -33,24 +33,41 @@ public class GameManager {
     }
 
     public void next() {
+        localPlayer.setIds();
+
+
+        if(localPlayer.isImprisoned()) {
+            int tries = 0;
+
+            while(tries < 3) {
+                getDie().rollDie();
+
+                if(getDie().isDoublets()) {
+                    System.out.println("Doublets (" + getDie().getFirst() + ", " + getDie().getSecond() + ")");
+                    localPlayer.setImprisioned(false);
+                    return;
+                } else {
+                    System.out.println("No doublets (" + getDie().getFirst() + ", " + getDie().getSecond() + ")");
+                    tries++;
+                }
+            }
+        }
+
         rollDie();
-
-        int sum = 1;
-        //int sum = first + second;
+        int sum = first + second;
         stepsLeft = sum;
-
+        localPlayer.stepsLeft = stepsLeft;
         for(int i = 0; i < sum; i++) {
             try {
                 Thread.sleep(250);
-                System.out.println("FieldID : " + localPlayer.getFieldId());
-                stepsLeft--;
-                localPlayer.setIds();
-                localPlayer.move(stepsLeft);
-                localPlayer.stepsLeft = stepsLeft;
+                localPlayer.move();
+                localPlayer.stepsLeft--;
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+        localPlayer.checkCurrentField();
 
         firstRound = false;
 
@@ -90,7 +107,7 @@ public class GameManager {
 
         Jail jail = new Jail();
 
-        localPlayer = new Player("flo", 6, 0, 1, "player", 1500, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
+        localPlayer = new Player("flo", 6, 0, 1, "player", 1000000, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
         add(localPlayer);
     }
 

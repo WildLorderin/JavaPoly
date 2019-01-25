@@ -9,7 +9,7 @@ import de.scholzf.javapoly.Manager.HouseManager;
 
 import java.awt.event.KeyEvent;
 
-public class main {
+public class MainGame {
 
 	private static CommunityCardManager communityCardManager;
 	private static GameManager gameManager;
@@ -50,17 +50,16 @@ public class main {
 				//Starts the game
 			} else if(key == KeyEvent.VK_P) {
 				//Purchase
-				player.purchaseItem(null);
+				player.purchaseItem(houseManager.getPurchaseable(player.getFieldId()));
 			} else if(key == KeyEvent.VK_T) {
 				//Show stats of card you are currently on
-				consoleManager.showTileStats();
+				consoleManager.showTileStats(player);
 			}
 		}
-
 	}
 
 	public static void main(String[] args) {
-		new main().onEnable();
+		new MainGame().onEnable();
 	}
 
 }

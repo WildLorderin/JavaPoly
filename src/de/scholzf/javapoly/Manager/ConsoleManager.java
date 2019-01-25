@@ -2,11 +2,11 @@ package de.scholzf.javapoly.Manager;
 
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Player;
-import de.scholzf.javapoly.Test.main;
+import de.scholzf.javapoly.Test.MainGame;
 
 public class ConsoleManager {
 
-    Player player = main.getGameManager().getLocalPlayer();
+    HouseManager houseManager = MainGame.getHouseManager();
 
     public void printf(String format, Object ... args) {
         System.out.printf(format, args);
@@ -14,17 +14,18 @@ public class ConsoleManager {
 
     public void stats(Entity entity) {
         System.out.println("Das sind deine Stats:");
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("x");
+        System.out.println("x   Häuser: [" + entity.getItems().size() + "]");
+        entity.getItems().forEach(item -> System.out.println("x   Name: " + item.getName() + "\nx   Preis: " + item.getValue() + "$\n0"));
+        System.out.println("x");
+        printf("x   Geld: %f$\n", entity.getMoney());
 
-        System.out.println("0   Häuser:");
-        entity.getItems().forEach(item -> System.out.println("0   Name: " + item.getName() + "\n0   Preis: " + item.getValue() + "\n0"));
-
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxx");
     }
 
-    public void showTileStats() {
+    public void showTileStats(Player player) {
 
-
-
+        System.out.println(houseManager);
     }
 }
