@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HouseManager {
 
-    private List<Purchaseable> purchaseables = new ArrayList<>();
+    private static List<Purchaseable> purchaseables = new ArrayList<>();
 
     public void create() {
         purchaseables.add(null);
@@ -37,12 +37,12 @@ public class HouseManager {
         purchaseables.add(new House("GW1-HS", 650));
     }
 
-    public Purchaseable getPurchaseable(int index) {
-        return this.purchaseables.get(index);
+    public static Purchaseable getPurchaseable(int index) {
+        return purchaseables.get(index);
     }
 
-    public List<Purchaseable> getPurchaseables() {
-        return this.purchaseables;
+    public static  List<Purchaseable> getPurchaseables() {
+        return purchaseables;
     }
 
 }

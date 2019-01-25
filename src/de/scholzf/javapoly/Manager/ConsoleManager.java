@@ -6,8 +6,6 @@ import de.scholzf.javapoly.Test.MainGame;
 
 public class ConsoleManager {
 
-    HouseManager houseManager = MainGame.getHouseManager();
-
     public void printf(String format, Object ... args) {
         System.out.printf(format, args);
     }
@@ -26,6 +24,6 @@ public class ConsoleManager {
 
     public void showTileStats(Player player) {
 
-        System.out.println(houseManager);
+        System.out.println(HouseManager.getPurchaseable(player.getFieldId()).getName());
     }
 }

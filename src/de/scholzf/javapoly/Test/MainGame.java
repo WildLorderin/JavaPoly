@@ -28,9 +28,9 @@ public class MainGame {
 
 	void onEnable() {
 		gameManager = new GameManager();
+		houseManager = new HouseManager();
 		consoleManager = new ConsoleManager();
 		communityCardManager = new CommunityCardManager(gameManager.getPlayers());
-		houseManager = new HouseManager();
 
 		gameManager.create();
 		communityCardManager.create();
