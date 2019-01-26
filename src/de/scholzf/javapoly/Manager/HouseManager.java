@@ -41,8 +41,4 @@ public class HouseManager {
         return purchaseables.get(index);
     }
 
-    public static  List<Purchaseable> getPurchaseables() {
-        return purchaseables;
-    }
-
 }

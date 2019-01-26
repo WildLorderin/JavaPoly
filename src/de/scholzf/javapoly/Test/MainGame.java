@@ -35,6 +35,8 @@ public class MainGame {
 		consoleManager = new ConsoleManager();
 		communityCardManager = new CommunityCardManager(gameManager.getPlayers());
 
+		consoleManager.allocate();
+
 		gameManager.create();
 		communityCardManager.create();
 		houseManager.create();

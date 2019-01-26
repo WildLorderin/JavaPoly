@@ -35,7 +35,6 @@ public class GameManager {
     public void next() {
         localPlayer.setIds();
 
-
         if(localPlayer.isImprisoned()) {
             int tries = 0;
 
@@ -57,8 +56,7 @@ public class GameManager {
 
         rollDie();
 
-        //int sum = first + second;
-        int sum = 1;
+        int sum = first + second;
         stepsLeft = sum;
         localPlayer.stepsLeft = stepsLeft;
 
@@ -75,11 +73,6 @@ public class GameManager {
         localPlayer.checkCurrentField();
 
         firstRound = false;
-
-    }
-
-    public int getSum() {
-        return first + second;
     }
 
     public void create() {
@@ -132,7 +125,6 @@ public class GameManager {
         return die;
     }
 
-    //200$ wenn über Los
     public void onGoSpace(Entity entity) {
         if(!firstRound)
             entity.setMoney(entity.getMoney() + 450);
