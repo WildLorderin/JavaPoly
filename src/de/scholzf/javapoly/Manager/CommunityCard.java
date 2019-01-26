@@ -33,10 +33,10 @@ public class CommunityCard {
     }
 
     public void print() {
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxx");
-        System.out.println("0   Name: " + name);
-        System.out.println("0   Action: " + action);
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxx");
+        ConsoleManager.print("xxxxxxxxxxxxxxxxxxxxxxx");
+        ConsoleManager.print("x   Name: " + name);
+        ConsoleManager.print("x   Aktion: " + action);
+        ConsoleManager.print("xxxxxxxxxxxxxxxxxxxxxxx");
     }
 
 }

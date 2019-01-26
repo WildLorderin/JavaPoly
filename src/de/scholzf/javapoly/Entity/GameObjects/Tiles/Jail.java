@@ -4,6 +4,7 @@ import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Player;
 import de.scholzf.javapoly.Entity.GameObjects.Utils.Die;
 import de.scholzf.javapoly.Exceptions.PurchaseException;
+import de.scholzf.javapoly.Manager.ConsoleManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Jail extends Tile {
     public Jail() {
         super(TileType.JAIL, "black");
         imprisoned = new ArrayList<>();
-        rent = 50;
+        rent = 250;
         die = new Die();
     }
 
@@ -27,10 +28,14 @@ public class Jail extends Tile {
         return this.imprisoned;
     }
 
-    public void payRent() throws PurchaseException {
+    public void payRent() {
         if(player.isCreditWorth(rent)) {
+            player.setImprisioned(false);
+            imprisoned.remove(player);
+            player.setMoney(player.getMoney() - 250);
+            return;
         } else {
-            throw new PurchaseException("Du hast nicht genügent Geld um Dich freizukaufen.");
+            ConsoleManager.print("Du hast nicht genügent Geld um Dich freizukaufen.");
         }
     }
 

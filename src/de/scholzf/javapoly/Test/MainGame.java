@@ -8,6 +8,7 @@ import de.scholzf.javapoly.Manager.GameManager;
 import de.scholzf.javapoly.Manager.HouseManager;
 
 import java.awt.event.KeyEvent;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,16 +65,26 @@ public class MainGame {
 				//Starts the game
 			} else if(key == KeyEvent.VK_P) {
 				//Purchase
-				if(exitCodes.contains(player.getFieldId()))
-					System.out.println("Du kannst das Feld nicht kaufen.");
-				else
+				if(exitCodes.contains(player.getFieldId())) {
+					ConsoleManager.print("Du kannst das Feld nicht kaufen.");
+				} else {
 					player.purchaseItem(houseManager.getPurchaseable(player.getFieldId()));
+				}
 			} else if(key == KeyEvent.VK_T) {
 				//Show stats of card you are currently on
 				if(exitCodes.contains(player.getFieldId()))
-					System.out.printf("Zu diesen Feld gibt es keine weiteren Informationen.");
+					ConsoleManager.print("Zu diesen Feld gibt es keine weiteren Informationen.");
 				else
 					consoleManager.showTileStats(player);
+			} else if(key == KeyEvent.VK_C) {
+				ConsoleManager.clear();
+			} else if(key == KeyEvent.VK_O) {
+
+				//Frei kaufen im Gefängnis
+				if(player.isImprisoned())
+					player.payRent();
+				else
+					ConsoleManager.print("Du musst im Gefängnis sein um Dich freizukaufen.");
 			}
 		}
 	}

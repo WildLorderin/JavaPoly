@@ -5,6 +5,7 @@ import de.scholzf.javapoly.Entity.Base.GameObjectType;
 import de.scholzf.javapoly.Entity.GameObjects.Tiles.Jail;
 import de.scholzf.javapoly.Manager.CommunityCard;
 import de.scholzf.javapoly.Manager.CommunityCardManager;
+import de.scholzf.javapoly.Manager.ConsoleManager;
 import de.scholzf.javapoly.Manager.GameManager;
 import de.scholzf.javapoly.Test.MainGame;
 
@@ -14,14 +15,17 @@ public class Player extends Entity {
 	private CommunityCardManager communityCardManager = MainGame.getCommunityCardManager();
 	public int stepsLeft;
 	private int fieldId;
+	public Jail jail;
 
 	public Player(String name, double money, EntityFigure figure, Jail jail) {
 		super(name, GameObjectType.PLAYER, figure, money, jail);
 		super.setPlayer(this);
+		this.jail = jail;
 	}
 
-	public Player(String name, int x, int y, int rotation, String fileName, double money, GameObjectType type, EntityFigure figure, Jail jail){
+	public Player(String name, int x, int y, int rotation, String fileName, double money, GameObjectType type, EntityFigure figure, Jail jail) {
 		super(name, x, y, rotation, fileName, money, type, figure, jail);
+		this.jail = jail;
 	}
 
 	public void move() {
@@ -45,6 +49,10 @@ public class Player extends Entity {
 				setIds();
 				break;
 		}
+	}
+
+	public Jail getJail() {
+		return this.jail;
 	}
 
 	public void setFieldId(int id) {
@@ -117,7 +125,7 @@ public class Player extends Entity {
 			//Über Los
 			gameManager.onGoSpace(this);
 		} else if(this.getX() == 0 && this.getY() == 0 && this.stepsLeft == 0) {
-			System.out.println(stepsLeft);
+			ConsoleManager.print(stepsLeft);
 			this.setImprisioned(true);
 			this.setLocation(6, 6);
 		}
@@ -182,13 +190,24 @@ public class Player extends Entity {
 		this.setLocation(this.getX(), this.getY() + 1);
 	}
 
+	@Override
+	public void payRent() {
+		if(isCreditWorth(250)) {
+			setImprisioned(false);
+			setMoney(getMoney() - 250);
+			return;
+		} else {
+			ConsoleManager.print("Du hast nicht genügent Geld um Dich freizukaufen.");
+		}
+	}
+
 	public void details() {
-		System.out.println("Name: " + this.getName());
-		System.out.println("Money: " + this.getMoney() + "$");
-		System.out.println("Figure: " + this.getFigure().toString());
-		System.out.println("Ist im Gefängnis: " + this.isImprisoned());
-		System.out.println("GameObjectType: " + this.getType());
-		this.getItems().forEach(item -> System.out.println("Name: " + item.getName() + "\n Kosten: " + item.getValue() + "$\n Besitzer: " + item.getOwner().getName()));
+		ConsoleManager.print("Name: " + this.getName());
+		ConsoleManager.print("Money: " + this.getMoney() + "$");
+		ConsoleManager.print("Figure: " + this.getFigure().toString());
+		ConsoleManager.print("Ist im Gefängnis: " + this.isImprisoned());
+		ConsoleManager.print("GameObjectType: " + this.getType());
+		this.getItems().forEach(item -> ConsoleManager.print("Name: " + item.getName() + "\n Kosten: " + item.getValue() + "$\n Besitzer: " + item.getOwner().getName()));
 	}
 
 }

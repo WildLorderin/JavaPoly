@@ -7,6 +7,7 @@ import de.scholzf.javapoly.Entity.Base.EntityFigure;
 import de.scholzf.javapoly.Entity.Base.GameObjectType;
 import de.scholzf.javapoly.Entity.Base.Purchaseable;
 import de.scholzf.javapoly.Exceptions.PurchaseException;
+import de.scholzf.javapoly.Manager.ConsoleManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,10 +88,10 @@ public abstract class Entity extends GameObject implements EntityBase {
 				this.setMoney(this.getMoney() - purchaseable.getValue());
 				this.items.add(purchaseable);
 			} else {
-				System.out.println("Du hast " + purchaseable.getName() + " bereits gekauft.");
+				ConsoleManager.print("Du hast " + purchaseable.getName() + " bereits gekauft.");
 			}
 		} else {
-			System.out.println("Du hast zu wenig Geld. " + this.getMoney() + " $ / " + purchaseable.getValue() + " $");
+			ConsoleManager.print("Du hast zu wenig Geld. " + this.getMoney() + " $ / " + purchaseable.getValue() + " $");
 		}
 	}
 
@@ -161,4 +162,5 @@ public abstract class Entity extends GameObject implements EntityBase {
 
 	public abstract void moveDown();
 
+    public abstract void payRent();
 }

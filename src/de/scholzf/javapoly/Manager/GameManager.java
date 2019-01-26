@@ -42,13 +42,13 @@ public class GameManager {
                 getDie().rollDie();
 
                 if(getDie().isDoublets()) {
-                    System.out.println("Pasch (" + getDie().getFirst() + ", " + getDie().getSecond() + ")");
-                    System.out.println("Du bist aus dem Gefängnis draußen!");
+                    ConsoleManager.print("Du hast einen Pasch mit " + getDie().getFirst() + " und " + getDie().getSecond() + " gewürfelt.");
+                    ConsoleManager.print("Du bist aus dem Gefängnis draußen!");
                     localPlayer.setImprisioned(false);
                     return;
                 } else {
-                    System.out.println("Kein Pasch (" + getDie().getFirst() + ", " + getDie().getSecond() + ")");
-                    System.out.println("Du hast noch " + tries + " Versuche um aus dem Gefängnis zu kommen!");
+                    ConsoleManager.print("Du hast mit " + getDie().getFirst() + " und " + getDie().getSecond()  + " leinder keinen Pasch gewürfelt.");
+                    ConsoleManager.print("Du hast noch " + (3 - tries) + " Versuche um aus dem Gefängnis zu kommen!");
                     tries++;
                 }
             }
@@ -56,7 +56,7 @@ public class GameManager {
 
         rollDie();
 
-        int sum = first + second;
+        int sum = 1;
         stepsLeft = sum;
         localPlayer.stepsLeft = stepsLeft;
 
@@ -105,7 +105,7 @@ public class GameManager {
 
         Jail jail = new Jail();
 
-        localPlayer = new Player("Florian", 6, 0, 1, "player", 1000000, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
+        localPlayer = new Player("Florian", 6, 0, 1, "student", 1000000, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
         add(localPlayer);
     }
 

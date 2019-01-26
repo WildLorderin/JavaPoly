@@ -11,13 +11,23 @@ public class ConsoleManager extends JFrame {
     public JFrame frame;
     private static JTextArea textArea = new JTextArea(24, 80);
 
+    public static void clear() {
+        textArea.selectAll();
+        textArea.replaceSelection("");
+    }
+
     public void allocate() {
         frame = new JFrame("JavaPoly");
         textArea.setBackground(Color.BLACK);
         textArea.setForeground(Color.LIGHT_GRAY);
         textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 
-        frame.add(textArea);
+        JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        frame.setResizable(false);
+
+        frame.add(scroll);
+        //frame.add(textArea);
 
         frame.pack();
         frame.setVisible(true);
