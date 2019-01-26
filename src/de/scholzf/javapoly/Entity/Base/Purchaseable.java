@@ -16,5 +16,8 @@ public interface Purchaseable {
 	
 	void setName(String name);
 	String getName();
+
+	double getRent();
+	void setRent(double rent);
 	
 }

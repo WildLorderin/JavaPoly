@@ -20,6 +20,9 @@ public class CommunityCardManager {
     public void create() {
         cards.add(new CommunityCard("BAföG Rückzahlung", "Du musst leider einen Teil Deines BAföG zurückzahlen. Zahle 250€", 0));
         cards.add(new CommunityCard("Semesterbeitrag steht an! ", "Zahle 349€", 1));
+        cards.add(new CommunityCard("Vorläufiges BAföG", "Du bekommst dein BaföG schon heute! Gehe zurück zum Start und kassieren 450€", 2));
+        cards.add(new CommunityCard("Nachhilfe", "Um das Semester zu bestehen musst du dir Nachhilfe nehmrn. Zahle 50€", 3));
+        cards.add(new CommunityCard("Nachhilfe", "Du gibts Nachhilfe und bekommst 100€", 4));
     }
 
     public CommunityCard getCard() {

@@ -132,6 +132,15 @@ public class Player extends Entity {
 			case 1:
 				setMoney(getMoney() - 349);
 				break;
+			case 2:
+				setLocation(6, 0);
+				break;
+			case 3:
+				setMoney(getMoney() - 50);
+				break;
+			case 4:
+				setMoney(getMoney() + 150);
+				break;
 			default:
 				break;
 		}

@@ -43,20 +43,25 @@ public class GameManager {
                 getDie().rollDie();
 
                 if(getDie().isDoublets()) {
-                    System.out.println("Doublets (" + getDie().getFirst() + ", " + getDie().getSecond() + ")");
+                    System.out.println("Pasch (" + getDie().getFirst() + ", " + getDie().getSecond() + ")");
+                    System.out.println("Du bist aus dem Gefängnis draußen!");
                     localPlayer.setImprisioned(false);
                     return;
                 } else {
-                    System.out.println("No doublets (" + getDie().getFirst() + ", " + getDie().getSecond() + ")");
+                    System.out.println("Kein Pasch (" + getDie().getFirst() + ", " + getDie().getSecond() + ")");
+                    System.out.println("Du hast noch " + tries + " Versuche um aus dem Gefängnis zu kommen!");
                     tries++;
                 }
             }
         }
 
         rollDie();
-        int sum = first + second;
+
+        //int sum = first + second;
+        int sum = 1;
         stepsLeft = sum;
         localPlayer.stepsLeft = stepsLeft;
+
         for(int i = 0; i < sum; i++) {
             try {
                 Thread.sleep(250);
@@ -107,7 +112,7 @@ public class GameManager {
 
         Jail jail = new Jail();
 
-        localPlayer = new Player("flo", 6, 0, 1, "player", 1000000, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
+        localPlayer = new Player("Florian", 6, 0, 1, "player", 1000000, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
         add(localPlayer);
     }
 
@@ -129,9 +134,8 @@ public class GameManager {
 
     //200$ wenn über Los
     public void onGoSpace(Entity entity) {
-
         if(!firstRound)
-            entity.setMoney(entity.getMoney() + 200);
+            entity.setMoney(entity.getMoney() + 450);
     }
 
 }

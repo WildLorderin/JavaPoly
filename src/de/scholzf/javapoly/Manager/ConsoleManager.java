@@ -2,7 +2,6 @@ package de.scholzf.javapoly.Manager;
 
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Player;
-import de.scholzf.javapoly.Test.MainGame;
 
 public class ConsoleManager {
 
@@ -23,7 +22,16 @@ public class ConsoleManager {
     }
 
     public void showTileStats(Player player) {
+        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxx");
+        System.out.println("x   Name: " + HouseManager.getPurchaseable(player.getFieldId()).getName());
+        System.out.println("x   Kaufpreis: " + HouseManager.getPurchaseable(player.getFieldId()).getValue());
 
-        System.out.println(HouseManager.getPurchaseable(player.getFieldId()).getName());
+        if(HouseManager.getPurchaseable(player.getFieldId()).getOwner() != null) {
+            System.out.println("x   Besitzer: " + HouseManager.getPurchaseable(player.getFieldId()).getOwner().getName());
+        } else {
+            System.out.println("x   Es gibt noch keinen Besitzer");
+        }
+
+        System.out.println("x   Mietpreis: " + HouseManager.getPurchaseable(player.getFieldId()).getRent());
     }
 }

@@ -79,8 +79,7 @@ public abstract class Entity extends GameObject implements EntityBase {
 	}
 
 	@Override
-	public void purchaseItem(Purchaseable purchaseable) throws PurchaseException {
-
+	public void purchaseItem(Purchaseable purchaseable){
 		if(this.isCreditWorth(purchaseable.getValue())) {
 			if(!this.getItems().contains(purchaseable)) {
 				purchaseable.setOwner(this);
@@ -88,10 +87,10 @@ public abstract class Entity extends GameObject implements EntityBase {
 				this.setMoney(this.getMoney() - purchaseable.getValue());
 				this.items.add(purchaseable);
 			} else {
-				throw new PurchaseException("Bereits gekauft!");
+				System.out.println("Du hast " + purchaseable.getName() + " bereits gekauft.");
 			}
 		} else {
-			throw new PurchaseException("Du hast zu wenig Geld. " + this.getMoney() + " $ / " + purchaseable.getValue() + " $");
+			System.out.println("Du hast zu wenig Geld. " + this.getMoney() + " $ / " + purchaseable.getValue() + " $");
 		}
 	}
 

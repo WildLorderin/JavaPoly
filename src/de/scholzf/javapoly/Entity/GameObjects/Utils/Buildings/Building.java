@@ -10,12 +10,14 @@ public class Building implements BuildingBase {
 	private double value;
 	private GameObjectType type;
 	private Entity owner;
+	public double rent;
 	
-	public Building(String name, double value, GameObjectType type, Entity owner) {
+	public Building(String name, double value, GameObjectType type, Entity owner, double rent) {
 		setName(name);
 		setValue(value);
 		setType(type);
 		setOwner(owner);
+		setRent(rent);
 	}
 	
 	@Override
@@ -58,6 +60,12 @@ public class Building implements BuildingBase {
 		this.owner = owner;
 	}
 
+	public void setRent(double rent) {
+		this.rent = rent;
+	}
 
+	public double getRent() {
+		return this.rent;
+	}
 
 }
