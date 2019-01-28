@@ -18,7 +18,7 @@ public class Jail extends Tile {
 
 
     public Jail() {
-        super(TileType.JAIL, "black");
+        super(TileType.JAIL, "intojail");
         imprisoned = new ArrayList<>();
         rent = 250;
         die = new Die();

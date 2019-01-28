@@ -56,7 +56,7 @@ public class GameManager {
 
         rollDie();
 
-        int sum = 1;
+        int sum = first + second;
         stepsLeft = sum;
         localPlayer.stepsLeft = stepsLeft;
 
@@ -76,32 +76,32 @@ public class GameManager {
     }
 
     public void create() {
-        new Tile(1, 0, "yellow");
-        new Tile(2, 0, "community_field");
-        new Tile(3, 0, "lapis");
-        new Tile(4, 0, "lapis");
-        new Tile(5, 0, "lapis");
-        new Tile(6, 0, "start");
-
-        new Tile(0, 1, "yellow");
-        new Tile(0, 2, "diamond");
-        new Tile(0, 3, "diamond");
-        new Tile(0, 4, "community_field");
-        new Tile(0, 5, "orange");
-        new Tile(0, 6, "emerald");
-
-        new Tile(1, 6, "orange");
-        new Tile(2, 6, "orange");
-        new Tile(3, 6, "community_field");
-        new Tile(4, 6, "lime");
-        new Tile(5, 6, "lime");
-        new Tile(6, 5, "magenta");
+        new Tile(6, 1, "blue-0");
+        new Tile(6, 2, "blue-0");
+        new Tile(6, 3, "community_field-0");
+        new Tile(6, 4, "purple-0");
+        new Tile(6, 5, "purple-0");
         new Tile(6, 6, "jail");
 
-        new Tile(6, 1, "lightblue");
-        new Tile(6, 2, "lightblue");
-        new Tile(6, 3, "community_field");
-        new Tile(6, 4, "magenta");
+        new Tile(1, 0, "white-1");
+        new Tile(2, 0, "ereignis-1");
+        new Tile(3, 0, "brown-1");
+        new Tile(4, 0, "brown-1");
+        new Tile(5, 0, "brown-1");
+        new Tile(6, 0, "start");
+
+        new Tile(0, 1, "white-0");
+        new Tile(0, 2, "red-0");
+        new Tile(0, 3, "red-0");
+        new Tile(0, 4, "community_field-0");
+        new Tile(0, 5, "orange-0");
+        new Tile(0, 6, "freiparken");
+
+        new Tile(1, 6, "orange-1");
+        new Tile(2, 6, "orange-1");
+        new Tile(3, 6, "ereignis-1");
+        new Tile(4, 6, "green-1");
+        new Tile(5, 6, "green-1");
 
         Jail jail = new Jail();
 

@@ -123,7 +123,7 @@ public class Player extends Entity {
 			performAction(card.getId());
 		} else if(this.getX() == 6 && this.getY() == 0) {
 			//Über Los
-			gameManager.onGoSpace(this);
+			setMoney(getMoney() + 450);
 		} else if(this.getX() == 0 && this.getY() == 0 && this.stepsLeft == 0) {
 			ConsoleManager.print(stepsLeft);
 			this.setImprisioned(true);
@@ -195,6 +195,7 @@ public class Player extends Entity {
 		if(isCreditWorth(250)) {
 			setImprisioned(false);
 			setMoney(getMoney() - 250);
+			ConsoleManager.print("Du hast sich aus dem Gefängnis für " + 250 + "€ freigekauft.");
 			return;
 		} else {
 			ConsoleManager.print("Du hast nicht genügent Geld um Dich freizukaufen.");

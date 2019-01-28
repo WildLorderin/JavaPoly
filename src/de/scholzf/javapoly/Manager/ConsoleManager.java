@@ -22,7 +22,7 @@ public class ConsoleManager extends JFrame {
         textArea.setForeground(Color.LIGHT_GRAY);
         textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 
-        JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         frame.setResizable(false);
 
