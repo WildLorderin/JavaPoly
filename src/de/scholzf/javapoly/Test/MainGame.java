@@ -2,6 +2,7 @@
 package de.scholzf.javapoly.Test;
 
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Player;
+import de.scholzf.javapoly.Entity.GameObjects.Utils.Server.ServerConnection;
 import de.scholzf.javapoly.Manager.CommunityCardManager;
 import de.scholzf.javapoly.Manager.ConsoleManager;
 import de.scholzf.javapoly.Manager.GameManager;
@@ -18,6 +19,7 @@ public class MainGame {
 	private static GameManager gameManager;
 	private static HouseManager houseManager;
 	private static ConsoleManager consoleManager;
+	private static ServerConnection serverConnection;
 	private static List<Integer> exitCodes = new ArrayList<>();
 
 	public static CommunityCardManager getCommunityCardManager() {
@@ -30,11 +32,15 @@ public class MainGame {
 
 	public static ConsoleManager getConsoleManager() { return consoleManager; }
 
-	void onEnable() {
+	public static ServerConnection getServerConnection() { return serverConnection; }
+
+	void setupManager() {
 		gameManager = new GameManager();
 		houseManager = new HouseManager();
 		consoleManager = new ConsoleManager();
 		communityCardManager = new CommunityCardManager(gameManager.getPlayers());
+
+		serverConnection = new ServerConnection("localhost");
 
 		consoleManager.allocate();
 
@@ -50,6 +56,11 @@ public class MainGame {
 		exitCodes.add(14);
 		exitCodes.add(18);
 		exitCodes.add(20);
+	}
+
+	void onEnable() {
+
+		setupManager();
 
 		Player player = gameManager.getLocalPlayer();
 
@@ -85,6 +96,14 @@ public class MainGame {
 					player.payRent();
 				else
 					ConsoleManager.print("Du musst im Gefängnis sein um Dich freizukaufen.");
+			} else if(key == KeyEvent.VK_L) {
+				//Mit L kann man das Spiel liken
+				serverConnection.add("JavaPoly", System.getProperty("user.name"));
+				ConsoleManager.print(System.getProperty("user.name") + " hat JavaPoly geliked");
+			} else if(key == KeyEvent.VK_G) {
+				//Mit G kann man die aktuellen likes abrufen
+				int likes = serverConnection.get("JavaPoly");
+				ConsoleManager.print("JavaPoly hat " + likes + " Likes");
 			}
 		}
 	}

@@ -2,9 +2,11 @@ package de.scholzf.javapoly.Manager;
 
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Player;
+import de.scholzf.javapoly.Entity.GameObjects.Utils.Server.ServerConnection;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class ConsoleManager extends JFrame {
 
@@ -27,22 +29,24 @@ public class ConsoleManager extends JFrame {
         frame.setResizable(false);
 
         frame.add(scroll);
-        //frame.add(textArea);
 
         frame.pack();
         frame.setVisible(true);
 
         print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-        print("x	Herzlich Willkommen zu JavaPoly");
-        print("x	Steuerung");
-        print("x	P: Item kaufen");
-        print("x	S: Zeige deine Stats");
-        print("x	T: Zeige die Stats des aktuellen Blocks");
+        print("Herzlich Willkommen zu JavaPoly");
+        print("Du bist zum Server verbunden: " + ServerConnection.socket.getInetAddress().getHostAddress() + ":" + ServerConnection.socket.getPort());
+        print("Steuerung");
+        print("P: Item kaufen");
+        print("S: Zeige deine Stats");
+        print("T: Zeige die Stats des aktuellen Blocks");
+        print("L: Zum Liken dieses Spiels");
+        print("G: Abrufen der Likes dieses Spiels");
         print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     }
 
     public static void print(Object x) {
-        textArea.append(x == null ? "null\n" : x.toString() + "\n");
+        textArea.append(x == null ? "null\n" : "x   " + x.toString() + "\n");
     }
 
     public JFrame getFrame() {
@@ -52,25 +56,25 @@ public class ConsoleManager extends JFrame {
     public void stats(Entity entity) {
         print("Das sind deine Stats:");
         print("xxxxxxxxxxxxxxxxxxxxxxxxx");
-        print("x");
-        print("x   Häuser: [" + entity.getItems().size() + "]");
-        entity.getItems().forEach(item -> print("x   Name: " + item.getName() + "\nx   Preis: " + item.getValue() + "$\n0"));
-        print("x");
-        print("x   Geld: " + entity.getMoney() + "€\n");
+        print("");
+        print("Häuser: [" + entity.getItems().size() + "]");
+        entity.getItems().forEach(item -> print("Name: " + item.getName() + "\nPreis: " + item.getValue() + "$\n0"));
+        print("");
+        print("Geld: " + entity.getMoney() + "€\n");
         print("xxxxxxxxxxxxxxxxxxxxxxxxx");
     }
 
     public void showTileStats(Player player) {
         print("xxxxxxxxxxxxxxxxxxxxxxxxx");
-        print("x   Name: " + HouseManager.getPurchaseable(player.getFieldId()).getName());
-        print("x   Kaufpreis: " + HouseManager.getPurchaseable(player.getFieldId()).getValue());
+        print("Name: " + HouseManager.getPurchaseable(player.getFieldId()).getName());
+        print("Kaufpreis: " + HouseManager.getPurchaseable(player.getFieldId()).getValue());
 
         if(HouseManager.getPurchaseable(player.getFieldId()).getOwner() != null) {
-            print("x   Besitzer: " + HouseManager.getPurchaseable(player.getFieldId()).getOwner().getName());
+            print("Besitzer: " + HouseManager.getPurchaseable(player.getFieldId()).getOwner().getName());
         } else {
-            print("x   Es gibt noch keinen Besitzer");
+            print("Es gibt noch keinen Besitzer");
         }
 
-        print("x   Mietpreis: " + HouseManager.getPurchaseable(player.getFieldId()).getRent());
+        print("Mietpreis: " + HouseManager.getPurchaseable(player.getFieldId()).getRent());
     }
 }
