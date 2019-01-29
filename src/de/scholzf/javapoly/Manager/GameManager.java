@@ -76,8 +76,8 @@ public class GameManager {
     }
 
     public void create() {
-        new Tile(6, 1, "blue");
-        new Tile(6, 2, "blue");
+        new Tile(6, 1, "blue-0");
+        new Tile(6, 2, "blue-0");
         new Tile(6, 3, "community_field-0");
         new Tile(6, 4, "purple-0");
         new Tile(6, 5, "purple-0");
