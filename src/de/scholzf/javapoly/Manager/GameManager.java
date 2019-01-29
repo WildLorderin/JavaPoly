@@ -43,12 +43,12 @@ public class GameManager {
 
                 if(getDie().isDoublets()) {
                     ConsoleManager.print("Du hast einen Pasch mit " + getDie().getFirst() + " und " + getDie().getSecond() + " gewürfelt.");
-                    ConsoleManager.print("Du bist aus dem Gefängnis draußen!");
+                    ConsoleManager.print("Du bist aus der Bibliothek draußen!");
                     localPlayer.setImprisioned(false);
                     return;
                 } else {
                     ConsoleManager.print("Du hast mit " + getDie().getFirst() + " und " + getDie().getSecond()  + " leinder keinen Pasch gewürfelt.");
-                    ConsoleManager.print("Du hast noch " + (3 - tries) + " Versuche um aus dem Gefängnis zu kommen!");
+                    ConsoleManager.print("Du hast noch " + (3 - tries) + " Versuche um aus der Bibliothek zu kommen!");
                     tries++;
                 }
             }
@@ -76,8 +76,8 @@ public class GameManager {
     }
 
     public void create() {
-        new Tile(6, 1, "blue-0");
-        new Tile(6, 2, "blue-0");
+        new Tile(6, 1, "blue");
+        new Tile(6, 2, "blue");
         new Tile(6, 3, "community_field-0");
         new Tile(6, 4, "purple-0");
         new Tile(6, 5, "purple-0");
@@ -105,7 +105,7 @@ public class GameManager {
 
         Jail jail = new Jail();
 
-        localPlayer = new Player("Florian", 6, 0, 1, "student", 1000000, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
+        localPlayer = new Player("Florian", 6, 0, 1, "student", 5000, GameObjectType.PLAYER, EntityFigure.SHOE, jail);
         add(localPlayer);
     }
 

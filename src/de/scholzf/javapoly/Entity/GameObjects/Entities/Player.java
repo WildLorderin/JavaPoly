@@ -142,12 +142,22 @@ public class Player extends Entity {
 				break;
 			case 2:
 				setLocation(6, 0);
+				ConsoleManager.print("Du musst Nachsitzen und wurdest in die Bibliothek verbannt!");
 				break;
 			case 3:
 				setMoney(getMoney() - 50);
 				break;
 			case 4:
 				setMoney(getMoney() + 150);
+				break;
+			case 5:
+				setMoney(getMoney() - 100);
+				break;
+			case 6:
+				setMoney(getMoney() - 400);
+				break;
+			case 7:
+				setMoney(getMoney() + 1500);
 				break;
 			default:
 				break;
@@ -195,20 +205,11 @@ public class Player extends Entity {
 		if(isCreditWorth(250)) {
 			setImprisioned(false);
 			setMoney(getMoney() - 250);
-			ConsoleManager.print("Du hast sich aus dem Gefängnis für " + 250 + "€ freigekauft.");
+			ConsoleManager.print("Du hast sich aus der Bibliothek für " + 250 + "€ freigekauft.");
 			return;
 		} else {
 			ConsoleManager.print("Du hast nicht genügent Geld um Dich freizukaufen.");
 		}
-	}
-
-	public void details() {
-		ConsoleManager.print("Name: " + this.getName());
-		ConsoleManager.print("Money: " + this.getMoney() + "$");
-		ConsoleManager.print("Figure: " + this.getFigure().toString());
-		ConsoleManager.print("Ist im Gefängnis: " + this.isImprisoned());
-		ConsoleManager.print("GameObjectType: " + this.getType());
-		this.getItems().forEach(item -> ConsoleManager.print("Name: " + item.getName() + "\n Kosten: " + item.getValue() + "$\n Besitzer: " + item.getOwner().getName()));
 	}
 
 }

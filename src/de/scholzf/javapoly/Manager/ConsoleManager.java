@@ -2,16 +2,14 @@ package de.scholzf.javapoly.Manager;
 
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
 import de.scholzf.javapoly.Entity.GameObjects.Entities.Player;
-import de.scholzf.javapoly.Entity.GameObjects.Utils.Server.ServerConnection;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 public class ConsoleManager extends JFrame {
 
     public JFrame frame;
-    private static JTextArea textArea = new JTextArea(24, 80);
+    private static JTextArea textArea = new JTextArea(24, 85);
 
     public static void clear() {
         textArea.selectAll();
@@ -22,7 +20,7 @@ public class ConsoleManager extends JFrame {
         frame = new JFrame("JavaPoly");
         textArea.setBackground(Color.BLACK);
         textArea.setForeground(Color.LIGHT_GRAY);
-        textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+        textArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 11));
 
         JScrollPane scroll = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
@@ -33,16 +31,22 @@ public class ConsoleManager extends JFrame {
         frame.pack();
         frame.setVisible(true);
 
-        print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         print("Herzlich Willkommen zu JavaPoly");
-        print("Du bist zum Server verbunden: " + ServerConnection.socket.getInetAddress().getHostAddress() + ":" + ServerConnection.socket.getPort());
-        print("Steuerung");
-        print("P: Item kaufen");
+        print("");
+        print("         Steuerung");
+        print("D: Würfeln");
+        print("P: Aktuelles Feld kaufen");
         print("S: Zeige deine Stats");
-        print("T: Zeige die Stats des aktuellen Blocks");
-        print("L: Zum Liken dieses Spiels");
-        print("G: Abrufen der Likes dieses Spiels");
-        print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        print("T: Zeige die Stats des aktuellen Felds");
+        print("C: Console clearen");
+        print("O: Aus dem Gefängnis freikaufen");
+        print("");
+        print("         Regeln:");
+        print("   Versuche so viel wie möglich zu kaufen ohne dabei pleite zu gehen!");
+        print("   Solltest du kein Geld mehr haben oder alles besitzen ist das Spiel vorbei!");
+        print("   Viel Spaß wünschen euch Florian Scholz und Jona Andresen");
+        print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     }
 
     public static void print(Object x) {

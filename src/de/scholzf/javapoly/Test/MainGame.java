@@ -9,7 +9,6 @@ import de.scholzf.javapoly.Manager.GameManager;
 import de.scholzf.javapoly.Manager.HouseManager;
 
 import java.awt.event.KeyEvent;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,6 @@ public class MainGame {
 	private static GameManager gameManager;
 	private static HouseManager houseManager;
 	private static ConsoleManager consoleManager;
-	private static ServerConnection serverConnection;
 	private static List<Integer> exitCodes = new ArrayList<>();
 
 	public static CommunityCardManager getCommunityCardManager() {
@@ -28,19 +26,11 @@ public class MainGame {
 
 	public static GameManager getGameManager() { return gameManager; }
 
-	public static HouseManager getHouseManager() { return houseManager; }
-
-	public static ConsoleManager getConsoleManager() { return consoleManager; }
-
-	public static ServerConnection getServerConnection() { return serverConnection; }
-
 	void setupManager() {
 		gameManager = new GameManager();
 		houseManager = new HouseManager();
 		consoleManager = new ConsoleManager();
 		communityCardManager = new CommunityCardManager(gameManager.getPlayers());
-
-		serverConnection = new ServerConnection("localhost");
 
 		consoleManager.allocate();
 
@@ -72,7 +62,14 @@ public class MainGame {
 				consoleManager.stats(player);
 			} else if(key == KeyEvent.VK_D) {
 				//Roll next die
-				gameManager.next();
+
+				if(houseManager.canAfford(player))
+					gameManager.next();
+				else
+					ConsoleManager.print("Das Spiel ist vorbei!");
+					ConsoleManager.print("Danke für's Spielen!");
+					ConsoleManager.clear();
+					consoleManager.stats(player);
 				//Starts the game
 			} else if(key == KeyEvent.VK_P) {
 				//Purchase
@@ -87,23 +84,15 @@ public class MainGame {
 					ConsoleManager.print("Zu diesen Feld gibt es keine weiteren Informationen.");
 				else
 					consoleManager.showTileStats(player);
+					houseManager.canAfford(player);
 			} else if(key == KeyEvent.VK_C) {
 				ConsoleManager.clear();
 			} else if(key == KeyEvent.VK_O) {
-
 				//Frei kaufen im Gefängnis
 				if(player.isImprisoned())
 					player.payRent();
 				else
-					ConsoleManager.print("Du musst im Gefängnis sein um Dich freizukaufen.");
-			} else if(key == KeyEvent.VK_L) {
-				//Mit L kann man das Spiel liken
-				serverConnection.add("JavaPoly", System.getProperty("user.name"));
-				ConsoleManager.print(System.getProperty("user.name") + " hat JavaPoly geliked");
-			} else if(key == KeyEvent.VK_G) {
-				//Mit G kann man die aktuellen likes abrufen
-				int likes = serverConnection.get("JavaPoly");
-				ConsoleManager.print("JavaPoly hat " + likes + " Likes");
+					ConsoleManager.print("Du musst in der Bibliothek sein um Dich freizukaufen.");
 			}
 		}
 	}

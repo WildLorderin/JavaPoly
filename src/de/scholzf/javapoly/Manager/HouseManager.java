@@ -1,6 +1,7 @@
 package de.scholzf.javapoly.Manager;
 
 import de.scholzf.javapoly.Entity.Base.Purchaseable;
+import de.scholzf.javapoly.Entity.GameObjects.Entities.Entity;
 import de.scholzf.javapoly.Entity.GameObjects.Utils.Buildings.House;
 
 import java.util.ArrayList;
@@ -35,6 +36,15 @@ public class HouseManager {
         purchaseables.add(new House("Universum", 1450, 1000));
         purchaseables.add(new House("GW1", 500, 250));
         purchaseables.add(new House("GW1-HS", 650, 400));
+    }
+
+    public boolean canAfford(Entity entity) {
+        return purchaseables
+                .stream()
+                .filter(item -> item != null)
+                .filter(item -> item.getOwner() != entity)
+                .filter(item -> item.getValue() <= entity.getMoney())
+                .count() != 0;
     }
 
     public static Purchaseable getPurchaseable(int index) {
